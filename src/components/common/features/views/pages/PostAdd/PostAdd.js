@@ -1,9 +1,12 @@
+import { Container } from 'react-bootstrap';
+import AddPostForm from '../../../AddPostForm/AddPostForm';
+
 const PostAdd = () => {
   return (
-    <div>
-      <h1>Post Add</h1>
-      <p>nie</p>
-    </div>
+    <Container>
+      <h2>Add Post</h2>
+      <AddPostForm />
+    </Container>
   );
 };
 
