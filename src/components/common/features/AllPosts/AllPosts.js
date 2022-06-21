@@ -15,7 +15,7 @@ const AllPosts = () => {
           {posts.map((post) => (
             <Col key={post.author} xs={12} sm={6} lg={4}>
               <Card
-                key={post.author}
+                key={post.title}
                 border='secondary'
                 className={clsx('p-3', 'mb-1')}
               >

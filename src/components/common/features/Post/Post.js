@@ -42,7 +42,7 @@ const Post = () => {
           </Col>
 
           <Col md={4} align='right' className='mx-2'>
-            <Link to='/post/edit/:id'>
+            <Link to={'/post/edit/' + id}>
               <Button variant='outline-info' className='mx-1'>
                 Edit
               </Button>
