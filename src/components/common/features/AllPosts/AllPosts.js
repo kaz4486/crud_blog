@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import styles from './AllPosts.module.scss';
+import { dateToStr } from '../../../../utils/dateToStr';
 
 const AllPosts = () => {
   const posts = useSelector((state) => getAllPosts(state));
@@ -25,7 +26,7 @@ const AllPosts = () => {
                 </h6>
                 <h6>
                   <span className={styles.bold}>Published:</span>{' '}
-                  {post.publishedDate}
+                  {dateToStr(post.publishedDate)}
                 </h6>
                 <p>{post.shortDescription}</p>
                 <Link key={post.id} to={'/post/' + post.id}>

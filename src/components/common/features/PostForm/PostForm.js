@@ -2,6 +2,10 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PostForm = ({ action, actionText, ...props }) => {
   const [title, setTitle] = useState(props.title || '');
@@ -35,11 +39,9 @@ const PostForm = ({ action, actionText, ...props }) => {
         onChange={(e) => setAuthor(e.target.value)}
       />
       <Form.Label>Published</Form.Label>
-      <Form.Control
-        type='string'
-        placeholder='Enter published date'
-        value={publishedDate}
-        onChange={(e) => setPublished(e.target.value)}
+      <DatePicker
+        selected={publishedDate}
+        onChange={(date) => setPublished(date)}
       />
       <Form.Label>Short description</Form.Label>
       <Form.Control
@@ -51,13 +53,13 @@ const PostForm = ({ action, actionText, ...props }) => {
         onChange={(e) => setShortDescription(e.target.value)}
       />
       <Form.Label>Main content</Form.Label>
-      <Form.Control
+      <ReactQuill
         type='text'
+        theme='snow'
         placeholder='Leave a comment here'
-        as='textarea'
-        rows={10}
+        className='my-editing-area'
+        onChange={setMainContent}
         value={content}
-        onChange={(e) => setMainContent(e.target.value)}
       />
       <Button variant='primary' type='submit' className='mt-2'>
         {actionText}
