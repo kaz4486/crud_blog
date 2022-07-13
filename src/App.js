@@ -8,6 +8,8 @@ import NotFound from './components/common/features/views/pages/NotFound/NotFound
 import Post from './components/common/features/Post/Post';
 import PostAdd from './components/common/features/views/pages/PostAdd/PostAdd';
 import PostEdit from './components/common/features/views/pages/PostEdit/PostEdit';
+import Categories from './components/common/features/views/pages/Categories/Categories';
+import Category from './components/common/features/Category/Category';
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Route path='/post/add' element={<PostAdd />} />
         <Route path='/post/edit/:id' element={<PostEdit />} />
         <Route path='/about' element={<About />} />
+        <Route path='/categories' element={<Categories />} />
+        <Route path='category/:name' element={<Category />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

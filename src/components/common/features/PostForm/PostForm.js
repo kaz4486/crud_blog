@@ -7,8 +7,12 @@ import 'react-quill/dist/quill.snow.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { getAllCategories } from '../../../../redux/categoriesRedux';
 
 const PostForm = ({ action, actionText, ...props }) => {
+  const categories = useSelector((state) => getAllCategories(state));
+
   const {
     register,
     handleSubmit: validate,
@@ -27,11 +31,20 @@ const PostForm = ({ action, actionText, ...props }) => {
   );
   const [content, setMainContent] = useState(props.content || '');
 
+  const [category, setCategory] = useState('');
+
   const handleSubmit = (e) => {
     setContentError(!content);
     setDateError(!publishedDate);
     if (content && publishedDate) {
-      action({ title, author, publishedDate, shortDescription, content });
+      action({
+        title,
+        author,
+        publishedDate,
+        shortDescription,
+        content,
+        category,
+      });
     }
   };
 
@@ -73,6 +86,18 @@ const PostForm = ({ action, actionText, ...props }) => {
           This field is required
         </small>
       )}
+      <Form.Label>Category</Form.Label>
+      <Form.Select
+        aria-label='Select category'
+        onChange={(e) => setCategory(e.target.value)}
+      >
+        <option>Select category...</option>
+        {categories.map((category) => (
+          <option value={category.name} key={category.id}>
+            {category.name}
+          </option>
+        ))}
+      </Form.Select>
       <Form.Label>Short description</Form.Label>
       <Form.Control
         {...register('shortDescription', { required: true, minLength: 20 })}

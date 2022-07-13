@@ -28,6 +28,10 @@ const AllPosts = () => {
                   <span className={styles.bold}>Published:</span>{' '}
                   {dateToStr(post.publishedDate)}
                 </h6>
+                <h6>
+                  <span className={styles.bold}>Category: </span>
+                  {post.category}
+                </h6>
                 <p>{post.shortDescription}</p>
                 <Link key={post.id} to={'/post/' + post.id}>
                   <Button variant='primary'>Read more</Button>
